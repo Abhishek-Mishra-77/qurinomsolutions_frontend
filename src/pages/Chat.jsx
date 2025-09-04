@@ -5,7 +5,7 @@ import NavBar from "../components/Navbar";
 import { getUser } from "../auth/auth";
 import { Container, Row, Col, ListGroup, Form, Button } from "react-bootstrap";
 
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_API_URL);
 
 export default function Chat() {
   const [users, setUsers] = useState([]);
@@ -86,27 +86,24 @@ export default function Chat() {
                     return (
                       <div
                         key={i}
-                        className={`mb-3 d-flex ${
-                          isMe ? "justify-content-end" : "justify-content-start"
-                        }`}
+                        className={`mb-3 d-flex ${isMe ? "justify-content-end" : "justify-content-start"
+                          }`}
                       >
                         <div>
                           {/* Sender */}
                           <small
-                            className={`d-block mb-1 ${
-                              isMe
-                                ? "text-end text-primary"
-                                : "text-start text-secondary"
-                            }`}
+                            className={`d-block mb-1 ${isMe
+                              ? "text-end text-primary"
+                              : "text-start text-secondary"
+                              }`}
                           >
                             {sender}
                           </small>
 
                           {/* Message Bubble */}
                           <span
-                            className={`px-3 py-2 rounded shadow-sm ${
-                              isMe ? "bg-primary text-white" : "bg-light border"
-                            }`}
+                            className={`px-3 py-2 rounded shadow-sm ${isMe ? "bg-primary text-white" : "bg-light border"
+                              }`}
                           >
                             {m.content}
                           </span>
